@@ -28,7 +28,7 @@ char_array_t append_char_array_f(char_array_t a, char_array_t b) {
 
     char x[10] = "totally";
     char y[10] = "rekt";
-    char z[20]
+    char z[20];
 
     strcpy(x, z);
     strcat(y, z);
