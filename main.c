@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ncurses.h>
+#include <unistd.h>
 
 typedef struct int_array_t {
     int n[2];
@@ -20,7 +22,7 @@ typedef int_array_t (*int_array_int_array_f_t)(int_array_t a);
 typedef int_array_t (*int_array_f_t)();
 
 char_array_t new_char_array_f() {
-    const char_array_t n = { .s = "\0", .l = 0 };
+    const char_array_t n = { .s = { "\0" }, .l = { 0 } };
     return n;
 }
 
@@ -28,7 +30,7 @@ char_array_t append_char_array_f(char_array_t a, char_array_t b) {
     char y[20];
     strcpy(y, a.s);
     strcat(y, b.s);
-    char_array_t n = { .l = 20 };
+    char_array_t n = { .l = { 20 } };
     for( int i = 0; i < 20; i = i + 1 ){
         n.s[i] = y[i];
     }
@@ -51,7 +53,8 @@ int_array_t swap_int_array_f(int_array_t a) {
 }
 
 void print_int_array_f(int_array_t a){
-    printf("\n", printf("%d %d\n", a.n[0], a.n[1]));
+    printf("\n");
+    printf("%d %d\n", a.n[0], a.n[1]);
 }
 
 void print_char_array_f(char_array_t a){
@@ -82,6 +85,12 @@ int main(int argc, char** argv) {
 
 //    print_int_array(addone_int_array(swap_int_array_f(arg_int_array_f(argc, argv))));
 
-    const char_array_t rekt = { .s = "rekt", .l = 4 };
-    print_char_array(append_char_array(rekt, rekt));
+    const char_array_t r = { .s = { "rekt" }, .l = { 4 } };
+    initscr();
+    noecho();
+    curs_set(FALSE);
+    mvprintw(0, 0, r.s);
+    refresh();
+    sleep(5);
+    endwin();
 }
