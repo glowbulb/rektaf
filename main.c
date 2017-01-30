@@ -25,9 +25,12 @@ char_array_t new_char_array_f() {
 }
 
 char_array_t append_char_array_f(char_array_t a, char_array_t b) {
-    char_array_t n = { .l = 5 };
-    for( int i = 0; i < 5; i = i + 1 ){
-        n.s[i] = a.s[i];
+    char y[20];
+    strcpy(y, a.s);
+    strcat(y, b.s);
+    char_array_t n = { .l = 20 };
+    for( int i = 0; i < 20; i = i + 1 ){
+        n.s[i] = y[i];
     }
     return n;
 }
