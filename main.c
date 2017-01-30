@@ -25,15 +25,10 @@ char_array_t new_char_array_f() {
 }
 
 char_array_t append_char_array_f(char_array_t a, char_array_t b) {
-
-    char x[10] = "totally";
-    char y[10] = "rekt";
-    char z[20];
-
-    strcpy(x, z);
-    strcat(y, z);
-
-    const char_array_t n = { .s = z, .l = 11 };
+    char_array_t n = { .l = 5 };
+    for( int i = 0; i < 5; i = i + 1 ){
+        n.s[i] = a.s[i];
+    }
     return n;
 }
 
