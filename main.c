@@ -84,8 +84,8 @@ int_array_arg_f_t arg_int_array = arg_int_array_f;
 
 int main(int argc, char** argv) {
 
-//    if(argc < 2) { return 0; }
+    if(argc < 2) { return 0; }
 
-    print_int_array(addone_int_array(swap_int_array(new_int_array())));
+    print_int_array(addone_int_array(swap_int_array(arg_int_array(argc, argv))));
 
 }
