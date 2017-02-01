@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <ncurses.h>
-#include <unistd.h>
 
 typedef struct int_array_t {
     int n[2];
@@ -20,6 +18,8 @@ typedef char_array_t (*char_array_char_array_char_array_f_t)(char_array_t a, cha
 typedef void (*void_int_array_f_t)(int_array_t a);
 typedef int_array_t (*int_array_int_array_f_t)(int_array_t a);
 typedef int_array_t (*int_array_f_t)();
+
+typedef int_array_t (*int_array_arg_f_t)(int argc, char** argv);
 
 char_array_t new_char_array_f() {
     const char_array_t n = { .s = { "\0" }, .l = { 0 } };
@@ -74,23 +74,18 @@ int_array_t arg_int_array_f(int argc, char** argv) {
 void_int_array_f_t print_int_array = print_int_array_f;
 int_array_f_t new_int_array = new_int_array_f;
 int_array_int_array_f_t addone_int_array = addone_int_array_f;
+int_array_int_array_f_t swap_int_array = swap_int_array_f;
 
 void_char_array_f_t print_char_array = print_char_array_f;
 char_array_f_t new_char_array = new_char_array_f;
 char_array_char_array_char_array_f_t append_char_array = append_char_array_f;
 
+int_array_arg_f_t arg_int_array = arg_int_array_f;
+
 int main(int argc, char** argv) {
 
 //    if(argc < 2) { return 0; }
 
-//    print_int_array(addone_int_array(swap_int_array_f(arg_int_array_f(argc, argv))));
+    print_int_array(addone_int_array(swap_int_array(new_int_array())));
 
-    const char_array_t r = { .s = { "rekt" }, .l = { 4 } };
-    initscr();
-    noecho();
-    curs_set(FALSE);
-    mvprintw(0, 0, r.s);
-    refresh();
-    sleep(5);
-    endwin();
 }
