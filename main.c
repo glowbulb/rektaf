@@ -21,11 +21,6 @@ typedef int_array_t (*int_array_f_t)();
 
 typedef int_array_t (*int_array_arg_f_t)(int argc, char** argv);
 
-char_array_t new_char_array_f() {
-    const char_array_t n = { .s = { "\0" }, .l = { 0 } };
-    return n;
-}
-
 char_array_t append_char_array_f(char_array_t a, char_array_t b) {
     char y[20];
     strcpy(y, a.s);
@@ -39,6 +34,11 @@ char_array_t append_char_array_f(char_array_t a, char_array_t b) {
 
 int_array_t new_int_array_f() {
     const int_array_t n = { .n = { 1,2 } };
+    return n;
+}
+
+char_array_t new_char_array_f() {
+    const char_array_t n = { .s = { "\0" }, .l = { 0 } };
     return n;
 }
 
